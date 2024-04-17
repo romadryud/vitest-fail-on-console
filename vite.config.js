@@ -2,10 +2,10 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 
-
 export default defineConfig({
     resolve: { alias: { '@': '/src' } },
     build: {
+        sourcemap: true,
         lib: {
             entry: resolve(__dirname, 'src/index.ts'),
             name: 'Vitest-fail-on-console',
@@ -17,14 +17,13 @@ export default defineConfig({
                 globals: {
                     chalk: 'chalk',
                     vitest: 'vitest',
-                    util: 'util'
+                    util: 'util',
                 },
-                sourcemap: true,
                 exports: 'named',
             },
         },
     },
-    plugins: [dts({insertTypesEntry: true,})],
+    plugins: [dts({ insertTypesEntry: true })],
     test: {
         environment: 'node',
         globals: true,
